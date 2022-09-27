@@ -70,18 +70,7 @@ export default Vue.extend({
           }
         }
       }
-      console.log(this.sortedByGenres)
     },
-    //   TVShows.map((TVShow: TVShow) => {
-    //     TVShow.genres.map((genre: string) => {
-    //       if (!this.sortedByGenres.genre.includes(genre)) {
-    //         this.sortedByGenres.genre = genre
-    //         this.sortedByGenres.movies.push(TVShow)
-    //       } else this.sortedByGenres.movies.push(TVShow)
-    //     })
-    //   })
-    //   console.log(this.sortedByGenres)
-    // },
   },
 })
 </script>
