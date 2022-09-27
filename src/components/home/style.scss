@@ -1,0 +1,37 @@
+:root {
+  --movie-width: 200px;
+  --movie-height: 300px;
+  --arrow-width: 50px;
+  --slider-py: 10px;
+}
+
+.container {
+  position: relative;
+
+  .slider {
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: visible;
+    white-space: nowrap;
+    position: relative;
+    padding-top: var(--slider-py);
+    padding-bottom: var(--slider-py);
+
+    .movie {
+      width: var(--movie-width);
+      height: var(--movie-height);
+      display: inline-block;
+      position: relative;
+      color: white;
+      padding: 0 2px;
+      font-size: 0.8rem;
+      transition: all 0.8s ease-in-out;
+    }
+    .movie img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+      border-radius: 10px;
+    }
+  }
+}
