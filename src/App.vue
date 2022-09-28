@@ -1,13 +1,14 @@
 <template>
-  <div id="app">
-<!--    <nav>-->
-<!--      <router-link to="/">Home</router-link> |-->
-<!--      <router-link to="/about">About</router-link>-->
-<!--    </nav>-->
+  <div id="app" class="pb-4">
+    <Logo />
     <router-view />
   </div>
 </template>
+
 <script lang="ts">
 import Vue from "vue"
-export default Vue.extend({})
+import Logo from "./components/logo/Logo.vue"
+export default Vue.extend({
+  components: { Logo },
+})
 </script>
