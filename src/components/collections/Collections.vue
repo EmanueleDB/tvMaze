@@ -1,16 +1,8 @@
 <template>
   <div class="container">
-    <div v-for="collection of sortedByGenres" :key="collection.genre">
+    <div v-for="collection of tvShowsByGenres" :key="collection.genre">
       <h5 class="mt-3">{{ collection.genre }}</h5>
-      <div class="container__slider">
-        <div
-          v-for="tvShow of collection.TvShows"
-          :key="tvShow.id"
-          class="container__slider__movie"
-        >
-          <img :src="tvShow.image.original" alt="" />
-        </div>
-      </div>
+      <Slider :group="collection.TvShows" />
     </div>
   </div>
 </template>
@@ -18,7 +10,8 @@
 <script lang="ts">
 import Vue from "vue"
 import axios from "axios"
-import TvShow from "../../models/tvShow"
+import TvShow from "../../models/TvShow"
+import Slider from "@/components/slider/Slider.vue"
 
 interface Grouped {
   genre: string
@@ -26,10 +19,13 @@ interface Grouped {
 }
 export default Vue.extend({
   name: "Collections",
+  components: {
+    Slider,
+  },
   data() {
     return {
       TvShows: [] as Array<TvShow>,
-      sortedByGenres: [] as Grouped[],
+      tvShowsByGenres: [] as Grouped[],
     }
   },
   mounted() {
@@ -42,8 +38,10 @@ export default Vue.extend({
           url: "https://api.tvmaze.com/shows",
           method: "GET",
         })
-        if (response) this.fetchGenres(response.data)
-        console.log(response.data)
+        if (response) {
+          this.fetchGenres(response.data)
+          this.$store.commit("setTvShows", response.data)
+        }
       } catch (e) {
         console.log(e)
       }
@@ -52,7 +50,7 @@ export default Vue.extend({
     fetchGenres(TvShows: Array<TvShow>) {
       for (let i = 0; i < TvShows.length; i++) {
         for (let j = 0; j < TvShows[i].genres.length; j++) {
-          const index = this.sortedByGenres.findIndex(
+          const index = this.tvShowsByGenres.findIndex(
             (f) => f.genre === TvShows[i].genres[j]
           )
           if (index === -1) {
@@ -60,10 +58,10 @@ export default Vue.extend({
               genre: TvShows[i].genres[j],
               TvShows: [TvShows[i]],
             }
-            this.sortedByGenres.push(newFinal)
+            this.tvShowsByGenres.push(newFinal)
           } else {
-            this.sortedByGenres[index].TvShows = [
-              ...this.sortedByGenres[index].TvShows,
+            this.tvShowsByGenres[index].TvShows = [
+              ...this.tvShowsByGenres[index].TvShows,
               TvShows[i],
             ]
           }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Search @isSearching="isTyping" />
-    <Collections v-if="!isSearching" />
+    <Collections v-if="!isSearching.length" />
   </div>
 </template>
 
@@ -18,11 +18,11 @@ export default Vue.extend({
   },
   data() {
     return {
-      isSearching: false,
+      isSearching: "",
     }
   },
   methods: {
-    isTyping(value: boolean) {
+    isTyping(value: string) {
       this.isSearching = value
     },
   },
