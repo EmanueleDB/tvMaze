@@ -1,80 +1,30 @@
 <template>
-  <div class="container">
-    <div v-for="collection of sortedByGenres" :key="collection.genre">
-      <div>{{ collection.genre }}</div>
-      <div class="slider">
-        <div
-          v-for="tvShow of collection.TvShows"
-          :key="tvShow.id"
-          class="movie"
-        >
-          <img :src="tvShow.image.original" alt="" />
-        </div>
-      </div>
-    </div>
+  <div>
+    <Search @isSearching="isTyping" />
+    <Collections v-if="!isSearching" />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue"
-import axios from "axios"
-import TvShow from "../../models/tvShow"
+import Collections from "@/components/collections/Collections.vue"
+import Search from "@/components/search/Search.vue"
 
-interface Grouped {
-  genre: string
-  TvShows: Array<TvShow>
-}
 export default Vue.extend({
   name: "Home",
+  components: {
+    Collections,
+    Search,
+  },
   data() {
     return {
-      TvShows: [] as Array<TvShow>,
-      sortedByGenres: [] as Grouped[],
+      isSearching: false,
     }
   },
-  mounted() {
-    this.fetchMovies()
-  },
   methods: {
-    async fetchMovies() {
-      try {
-        const response = await axios({
-          url: "https://api.tvmaze.com/shows",
-          method: "GET",
-        })
-        if (response) this.TvShows = response.data
-        console.log(this.TvShows)
-        this.fetchGenres(this.TvShows)
-      } catch (e) {
-        console.log(e)
-      }
-    },
-
-    fetchGenres(TvShows: Array<TvShow>) {
-      for (let i = 0; i < TvShows.length; i++) {
-        for (let j = 0; j < TvShows[i].genres.length; j++) {
-          const index = this.sortedByGenres.findIndex(
-            (f) => f.genre === TvShows[i].genres[j]
-          )
-          if (index === -1) {
-            const newFinal: Grouped = {
-              genre: TvShows[i].genres[j],
-              TvShows: [TvShows[i]],
-            }
-            this.sortedByGenres.push(newFinal)
-          } else {
-            this.sortedByGenres[index].TvShows = [
-              ...this.sortedByGenres[index].TvShows,
-              TvShows[i],
-            ]
-          }
-        }
-      }
+    isTyping(value: boolean) {
+      this.isSearching = value
     },
   },
 })
 </script>
-
-<style lang="scss">
-@import "style";
-</style>
