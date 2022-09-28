@@ -12,9 +12,12 @@
 
 For what was requested for the assignment I didn't need a navigation, there is only one route which is Home (/)
 and I decided that the detail page when I click a tv show would be in a modal and not in a route.
-Vuex has been used just for a mutation, I fecthed the tv shows in Home and I commit them to the store because also the component Search will need to use them.
+Vuex has been used just for a mutation because the requested app is pretty static: I fetched the tv shows in Home and I commit them to the store because also the component Search will need to use them.
 
-####There are some components that I made to build the UI:
+Due to the fact that I'm not able to PATCH, DELETE or ADD more tv shows I just used the main endpoint from the provided API to get all the tv shows.
+The list of the tv shows won't change so I don't need to make more calls to get the details of a specific tv show (url/shows:id), I preferred selected the clicked one from the list to be displayed in the modal.
+
+#### There are some components that I made to build the UI:
 Home: it's the container component; it contains the Search and the Collections components, based on the typing the Collections component won't be shown anymore and there will be a slider with the result of the search;
 Collections: its the component in which I show the list of the tv shows filtered and grouped by genre and sorted by rating (the most rated are the first one shown on the left of the sliders)
 Slider: is a re-usable component, it accepts a 'group' prop and it renders the tv shows. It has been used in the Collections and in the Search components;
