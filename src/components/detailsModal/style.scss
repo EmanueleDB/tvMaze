@@ -1,4 +1,10 @@
 .modal {
+  svg {
+    color: $text-secondary;
+  }
+  h3 {
+    color: $text-secondary;
+  }
   &__close {
     width: 27px;
     height: 27px;

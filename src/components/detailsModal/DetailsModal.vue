@@ -51,6 +51,7 @@
 <script lang="ts">
 import Vue from "vue"
 import Section from "@/components/helpers/Section.vue"
+import TvShow from "@/types/TvShow"
 
 export default Vue.extend({
   name: "DetailsModal",
@@ -61,7 +62,7 @@ export default Vue.extend({
       required: true,
     },
     tvShow: {
-      type: Object,
+      type: Object as () => TvShow,
       required: true,
     },
   },
