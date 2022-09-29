@@ -1,0 +1,13 @@
+.modal {
+
+  &__close {
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    border-radius: 50% !important;
+  }
+  &-content {
+    top: 200px;
+    background-color: $background !important;
+  }
+}
