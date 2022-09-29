@@ -1,13 +1,38 @@
 .modal {
-
   &__close {
+    width: 27px;
+    height: 27px;
+    margin: auto;
     position: absolute;
-    right: -40px;
-    top: -40px;
+    right: 10px;
+    top: 10px;
     border-radius: 50% !important;
-  }
+    @include respond-to("md") {
+      right: -20px;
+      top: -40px;
+    }
+    }
   &-content {
-    top: 200px;
-    background-color: $background !important;
+    top: 50px;
+    background-color: $modal-background !important;
+    color: $text-primary;
+    border-radius: 1rem !important;
+    @include respond-to("md") {
+      top: 100px;
+    }
+  }
+
+  .flexcard {
+    &__header {
+      &__image {
+        width: 130px;
+        height: 190px;
+        border-radius: 10px;
+        @include respond-to("md") {
+          width: 180px;
+          height: 270px;
+        }
+      }
+    }
   }
 }

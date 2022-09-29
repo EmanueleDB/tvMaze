@@ -1,23 +1,20 @@
 @import "_mixins.scss";
-html {
-  background-color: $background;
-}
+html,
 body {
-  background-color: unset !important;
-  #app {
-    font-family: Montserrat, OpenSans;
-    color: $text-primary;
-    background-color: $background;
-    h1 {
-      margin: 0;
-    }
-
-    li {
-      list-style-type: none;
-    }
-
-    p {
-      margin: 0;
-    }
+  background-color: $background;
+  h1,
+  h3 {
+    margin: 0 !important;
   }
+  p {
+    margin: 0;
+  }
+  .svg-inline--fa {
+    height: 20px;
+  }
+}
+#app {
+  font-family: Montserrat, OpenSans;
+  color: $text-primary;
+  background-color: $background;
 }
