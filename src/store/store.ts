@@ -1,7 +1,7 @@
 import Vue from "vue"
 import Vuex from "vuex"
-import State from "../models/State"
-import TvShow from "../models/TvShow"
+import State from "../types/State"
+import TvShow from "../types/TvShow"
 
 Vue.use(Vuex)
 
@@ -16,6 +16,4 @@ export default new Vuex.Store({
       state.tvShowsCollection = payload
     },
   },
-  actions: {},
-  modules: {},
 })

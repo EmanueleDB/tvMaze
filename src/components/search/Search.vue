@@ -17,7 +17,7 @@
 <script lang="ts">
 import Vue from "vue"
 import Slider from "@/components/slider/Slider.vue"
-import TvShow from "@/models/TvShow"
+import TvShow from "@/types/TvShow"
 
 export default Vue.extend({
   name: "Search",

@@ -10,7 +10,7 @@
 <script lang="ts">
 import Vue from "vue"
 import axios from "axios"
-import TvShow from "../../models/TvShow"
+import TvShow from "../../types/TvShow"
 import Slider from "@/components/slider/Slider.vue"
 
 interface Grouped {
