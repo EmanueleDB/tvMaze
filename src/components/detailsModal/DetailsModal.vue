@@ -100,7 +100,6 @@ export default Vue.extend({
         })
         if (response) {
           this.tvShowSeasons = response.data
-          console.log(this.tvShowSeasons)
         }
       } catch (e) {
         console.log(e)

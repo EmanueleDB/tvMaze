@@ -33,4 +33,57 @@
       margin: 0 auto;
     }
   }
+  .dropdown {
+    position: absolute;
+    right: 200px;
+
+    &:hover {
+      svg {
+        color: $text-secondary;
+      }
+    }
+    &-toggle {
+      width: 40px;
+      height: 40px;
+      background-color: unset;
+      border: unset;
+      box-shadow: unset;
+
+      &:hover,
+      &:active,
+      &:focus,
+      &:focus-visible {
+        background-color: unset !important;
+        border: unset;
+        box-shadow: unset;
+      }
+    }
+    &-menu {
+      background-color: $primary;
+      border-radius: 10px;
+      padding: 0.5rem 0;
+      margin: 0;
+      li {
+        padding: 0 0.5rem !important;
+      }
+      a {
+        padding: 0 0.5rem;
+        &:hover, &:active, &:target {
+          background-color: $dropdown-menu;
+          cursor: pointer;
+          border-radius: 5px;
+        }
+      }
+      span {
+        color: white;
+      }
+    }
+  }
+  .dropdown.show > button {
+    background: unset;
+    border: unset;
+    svg {
+      color: $text-secondary;
+    }
+  }
 }
