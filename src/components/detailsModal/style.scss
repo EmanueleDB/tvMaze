@@ -12,6 +12,7 @@
     position: absolute;
     right: 10px;
     top: 10px;
+    padding: 0 0 3px 0 !important;
     border-radius: 50% !important;
     @include respond-to("md") {
       right: -20px;

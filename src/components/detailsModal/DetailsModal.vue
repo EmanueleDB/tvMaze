@@ -10,7 +10,7 @@
     <b-button
       type="button"
       variant="light"
-      class="modal__close p-0"
+      class="modal__close"
       @click="closeModal"
       >&times;</b-button
     >
@@ -41,6 +41,10 @@
             />
           </div>
         </div>
+        <Seasons
+          v-if="tvShowSeasons.length > 0 && tvShowSeasons[0].image"
+          :seasons="tvShowSeasons"
+        />
       </div>
       <div class="flexcard__body d-flex flex-column p-3">
         <p>{{ strippedSummary(tvShow.summary) }}</p>
@@ -50,12 +54,19 @@
 </template>
 <script lang="ts">
 import Vue from "vue"
-import Section from "@/components/helpers/Section.vue"
+import Section from "@/components/detailsModal/helpers/Section.vue"
+import Seasons from "./helpers/Seasons.vue"
 import TvShow from "@/types/TvShow"
+import axios from "axios"
 
 export default Vue.extend({
   name: "DetailsModal",
-  components: { Section },
+  components: { Section, Seasons },
+  data() {
+    return {
+      tvShowSeasons: [],
+    }
+  },
   props: {
     showModal: {
       type: Boolean,
@@ -66,6 +77,11 @@ export default Vue.extend({
       required: true,
     },
   },
+  watch: {
+    tvShow(to) {
+      this.getSeasons(to.id)
+    },
+  },
   methods: {
     closeModal() {
       this.$emit("close", false)
@@ -74,6 +90,20 @@ export default Vue.extend({
       if (summary) {
         const regex = /(<([^>]+)>)/gi
         return summary.replace(regex, "")
+      }
+    },
+    async getSeasons(id: number) {
+      try {
+        const response = await axios({
+          url: `https://api.tvmaze.com/shows/${id}/seasons`,
+          method: "GET",
+        })
+        if (response) {
+          this.tvShowSeasons = response.data
+          console.log(this.tvShowSeasons)
+        }
+      } catch (e) {
+        console.log(e)
       }
     },
   },

@@ -1,10 +1,10 @@
 <template>
   <div class="container__slider">
     <div
-      v-for="tvShow of sortedGroup"
+      v-for="tvShow of searchQuery ? group : sortedGroup"
       :key="tvShow.id"
       class="container__slider__movie"
-      @click="sendTvShow(tvShow)"
+      @click="openModal(tvShow)"
     >
       <img :src="tvShow.image.original" alt="image-show" />
     </div>
@@ -29,6 +29,10 @@ export default Vue.extend({
       type: Array as () => Array<TvShow>,
       required: true,
     },
+    searchQuery: {
+      type: [String, Boolean],
+      default: false,
+    },
   },
   data() {
     return {
@@ -39,15 +43,15 @@ export default Vue.extend({
   },
   mounted() {
     if (this.group.length) {
+      console.log(this.group)
       this.sortedByRating()
     }
-    console.log(this.sortedGroup)
   },
   methods: {
     closeModal(value: boolean) {
       this.showModal = value
     },
-    sendTvShow(tvShow: TvShow) {
+    openModal(tvShow: TvShow) {
       this.tvShow = tvShow
       this.showModal = true
     },

@@ -9,7 +9,11 @@
       />
     </div>
     <div class="container">
-      <Slider v-if="searchQuery" :group="availableShows" />
+      <Slider
+        v-if="searchQuery"
+        :group="availableShows"
+        :search-query="searchQuery"
+      />
     </div>
   </div>
 </template>
