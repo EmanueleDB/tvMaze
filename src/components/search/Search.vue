@@ -9,7 +9,11 @@
       />
     </div>
     <div class="container">
-      <Slider v-if="searchQuery" :group="availableShows" />
+      <Slider
+        v-if="searchQuery"
+        :group="availableShows"
+        :search-query="searchQuery"
+      />
     </div>
   </div>
 </template>
@@ -17,7 +21,7 @@
 <script lang="ts">
 import Vue from "vue"
 import Slider from "@/components/slider/Slider.vue"
-import TvShow from "@/models/TvShow"
+import TvShow from "@/types/TvShow"
 
 export default Vue.extend({
   name: "Search",
