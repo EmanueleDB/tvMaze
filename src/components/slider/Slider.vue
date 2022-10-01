@@ -43,7 +43,6 @@ export default Vue.extend({
   },
   mounted() {
     if (this.group.length) {
-      console.log(this.group)
       this.sortedByRating()
     }
   },

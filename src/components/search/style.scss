@@ -1,5 +1,14 @@
 .search-container {
-  input[type="search"]::-webkit-search-cancel-button {
+  position: relative;
+  display: flex;
+  justify-content: left;
+
+  @include respond-to("md") {
+  width: 100%;
+  justify-content: center;
+  }
+
+    input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
     cursor: pointer;
     height: 20px;
@@ -9,7 +18,7 @@
   }
 
   input {
-    width: 100%;
+    width: 80%;
     border-radius: 5px;
     background-color: $primary;
     color: $text-primary;
@@ -31,6 +40,68 @@
     @include respond-to("md") {
       width: 50%;
       margin: 0 auto;
+    }
+  }
+  .dropdown {
+    position: absolute;
+
+    @include respond-to("md") {
+      right: 20%;
+    }
+
+      &:hover {
+      svg {
+        color: $text-secondary;
+      }
+    }
+    &-toggle {
+      width: 40px;
+      height: 40px;
+      background-color: unset;
+      border: unset;
+      box-shadow: unset;
+
+      &:hover,
+      &:active,
+      &:focus,
+      &:focus-visible {
+        background-color: unset !important;
+        border: unset;
+        box-shadow: unset;
+      }
+    }
+    &-menu {
+      background-color: $primary;
+      border-radius: 10px;
+      padding: 0.5rem 0;
+      margin: 0;
+      li {
+        padding: 0 0.5rem !important;
+      }
+      a {
+        padding: 0 0.5rem;
+        &:hover,
+        &:active,
+        &:target {
+          background-color: $background;
+          cursor: pointer;
+          border-radius: 5px;
+        }
+      }
+      span {
+        color: white;
+      }
+      .active {
+        color: $text-secondary;
+        @include font-montserrat-bold;
+      }
+    }
+  }
+  .dropdown.show > button {
+    background: unset;
+    border: unset;
+    svg {
+      color: $text-secondary;
     }
   }
 }

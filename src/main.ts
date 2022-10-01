@@ -10,11 +10,18 @@ import {
   faClapperboard,
   faStarHalfStroke,
   faNetworkWired,
+  faFilter,
 } from "@fortawesome/free-solid-svg-icons"
 import "bootstrap-vue/dist/bootstrap-vue.css"
 import "bootstrap/dist/css/bootstrap.css"
 
-library.add(faLanguage, faClapperboard, faStarHalfStroke, faNetworkWired)
+library.add(
+  faLanguage,
+  faClapperboard,
+  faStarHalfStroke,
+  faNetworkWired,
+  faFilter
+)
 Vue.use(BootstrapVue)
 Vue.component("font-awesome-icon", FontAwesomeIcon)
 Vue.config.productionTip = false

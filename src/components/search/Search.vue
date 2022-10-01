@@ -1,12 +1,38 @@
 <template>
   <div>
-    <div class="w-100 d-flex justify-content-center search-container">
+    <div
+      class="search-container"
+    >
       <input
         v-model="searchQuery"
         type="search"
         placeholder="Search for a TV show"
         @input="isTyping($event)"
       />
+      <div>
+        <b-dropdown
+          class="dropdown"
+          v-b-tooltip.top="'Search by'"
+          right
+          no-caret
+        >
+          <template #button-content>
+            <font-awesome-icon icon="fa-solid fa-filter" class="filter" />
+          </template>
+          <div v-for="(filterItem, index) of filters" :key="index">
+            <b-dropdown-item
+              class="p-2"
+              @click="changeFilter(filterItem.value)"
+            >
+              <div class="btn btn-white btn-list btn-sm">
+                <span :class="{ active: filter === filterItem.value }">{{
+                  filterItem.label
+                }}</span>
+              </div>
+            </b-dropdown-item>
+          </div>
+        </b-dropdown>
+      </div>
     </div>
     <div class="container">
       <Slider
@@ -32,12 +58,19 @@ export default Vue.extend({
     return {
       searchQuery: "",
       tvShows: [] as Array<TvShow>,
+      filter: "name",
+      filters: [
+        { label: "Name", value: "name" },
+        { label: "Network", value: "network" },
+      ],
     }
   },
   computed: {
     availableShows(): TvShow[] {
       return this.tvShows.filter((tvShow: TvShow) =>
-        tvShow.name.toLowerCase().includes(this.searchQuery)
+        this.filter === "name"
+          ? tvShow.name.toLowerCase().includes(this.searchQuery)
+          : tvShow.network?.name.toLowerCase().includes(this.searchQuery)
       )
     },
   },
@@ -51,6 +84,9 @@ export default Vue.extend({
       if ((event.target as HTMLInputElement).value) {
         this.$emit("isSearching", this.searchQuery)
       } else this.$emit("isSearching", (this.searchQuery = ""))
+    },
+    changeFilter(value: string) {
+      this.filter = value
     },
   },
 })

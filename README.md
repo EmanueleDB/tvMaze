@@ -28,3 +28,8 @@ Search: is the component to search for a specific tv show. I applied a slider al
 Logo: is a small component just to display the TVMAZE logo, I wanted to have something up on the screen not having the navigation;
 
 As I said to Maria Kostryukova during the first interview I dont have experience with tests (jest), that's why they are non implemented in this app, but I'm looking forward to learn everything about testing asap.
+
+#### Additional things
+
+I have implemented a filter for the search so the user is now able to search the show by name or by network name (HBO, FOX, etc..)
+I also made a different call to the API to fetch the seasons per show; the seasons are shown with their images in the details modal (my idea was to also add a tooltip to show the season title of the season when hovering on it, but unfortunately the property 'name' of the season object in the API is always an empty string)
