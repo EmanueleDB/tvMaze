@@ -3,7 +3,7 @@
     <div class="search-container">
       <input
         v-model="searchQuery"
-        type="search"
+        type="text"
         placeholder="Search for a TV show"
         @input="isTyping($event)"
       />
