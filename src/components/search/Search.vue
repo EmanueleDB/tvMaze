@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div
-      class="search-container"
-    >
+    <div class="search-container">
       <input
         v-model="searchQuery"
         type="search"
@@ -39,6 +37,7 @@
         v-if="searchQuery"
         :group="availableShows"
         :search-query="searchQuery"
+        id="foundMatches"
       />
     </div>
   </div>
@@ -81,7 +80,7 @@ export default Vue.extend({
   },
   methods: {
     isTyping(event: Event) {
-      if ((event.target as HTMLInputElement).value) {
+      if (event.currentTarget) {
         this.$emit("isSearching", this.searchQuery)
       } else this.$emit("isSearching", (this.searchQuery = ""))
     },
