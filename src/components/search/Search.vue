@@ -67,8 +67,10 @@ export default Vue.extend({
     availableShows(): TvShow[] {
       return this.tvShows.filter((tvShow: TvShow) =>
         this.filter === "name"
-          ? tvShow.name.toLowerCase().includes(this.searchQuery)
-          : tvShow.network?.name.toLowerCase().includes(this.searchQuery)
+          ? tvShow.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+          : tvShow.network?.name
+              .toLowerCase()
+              .includes(this.searchQuery.toLowerCase())
       )
     },
   },

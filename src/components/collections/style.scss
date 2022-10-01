@@ -73,8 +73,10 @@
     }
 
     &:hover {
-      .btn-nav {
-        visibility: visible;
+      @include respond-to("md") {
+        .btn-nav {
+          visibility: visible;
+        }
       }
     }
   }
