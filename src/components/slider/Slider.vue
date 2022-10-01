@@ -1,5 +1,13 @@
 <template>
-  <div class="container__slider">
+  <div :class="['container__slider', id]">
+    <button
+      type="button"
+      id="moveLeft"
+      class="btn-nav"
+      @click="scrollTvShows('moveLeft')"
+    >
+      ᐊ
+    </button>
     <div
       v-for="tvShow of searchQuery ? group : sortedGroup"
       :key="tvShow.id"
@@ -13,6 +21,14 @@
       @close="closeModal"
       :tv-show="tvShow"
     />
+    <button
+      type="button"
+      id="moveRight"
+      class="btn-nav"
+      @click="scrollTvShows('moveRight')"
+    >
+      ᐅ
+    </button>
   </div>
 </template>
 
@@ -33,13 +49,23 @@ export default Vue.extend({
       type: [String, Boolean],
       default: false,
     },
+    id: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
       showModal: false,
       tvShow: {} as TvShow,
       sortedGroup: [] as Array<TvShow>,
+      distanceToScroll: 0,
     }
+  },
+  watch: {
+    id(to) {
+      if (to) this.distanceToScroll = 0
+    },
   },
   mounted() {
     if (this.group.length) {
@@ -59,6 +85,17 @@ export default Vue.extend({
       this.sortedGroup = this.sortedGroup.sort(
         (a, b) => b.rating.average - a.rating.average
       )
+    },
+    scrollTvShows(direction: string) {
+      const slider = document.querySelector("." + this.id) as Element
+      direction === "moveRight"
+        ? (this.distanceToScroll = this.distanceToScroll + 700)
+        : (this.distanceToScroll = this.distanceToScroll - 700)
+      slider?.scrollTo({
+        top: 0,
+        left: this.distanceToScroll,
+        behavior: "smooth",
+      })
     },
   },
 })

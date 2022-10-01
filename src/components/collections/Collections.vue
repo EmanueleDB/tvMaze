@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <div id="container" class="container">
     <div v-for="collection of tvShowsByGenres" :key="collection.genre">
       <h5 class="mt-3">{{ collection.genre }}</h5>
-      <Slider :group="collection.TvShows" />
+      <Slider :group="collection.TvShows" :id="collection.genre" />
     </div>
   </div>
 </template>
