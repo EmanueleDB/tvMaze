@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="w-100 d-flex justify-content-center search-container position-relative"
+      class="search-container"
     >
       <input
         v-model="searchQuery"
@@ -24,13 +24,10 @@
               class="p-2"
               @click="changeFilter(filterItem.value)"
             >
-              <div
-                :class="[
-                  'btn btn-white btn-list btn-sm',
-                  { active: filter === filterItem.value },
-                ]"
-              >
-                <span>{{ filterItem.label }}</span>
+              <div class="btn btn-white btn-list btn-sm">
+                <span :class="{ active: filter === filterItem.value }">{{
+                  filterItem.label
+                }}</span>
               </div>
             </b-dropdown-item>
           </div>
