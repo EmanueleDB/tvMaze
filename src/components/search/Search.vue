@@ -2,8 +2,7 @@
   <div>
     <div class="search-container">
       <input
-        v-model="searchQuery"
-        type="text"
+        type="search"
         placeholder="Search for a TV show"
         @input="isTyping($event)"
       />
@@ -80,7 +79,8 @@ export default Vue.extend({
   },
   methods: {
     isTyping(event: Event) {
-      if (event.currentTarget) {
+      if ((event.target as HTMLInputElement).value) {
+        this.searchQuery = (event.target as HTMLInputElement).value
         this.$emit("isSearching", this.searchQuery)
       } else this.$emit("isSearching", (this.searchQuery = ""))
     },
