@@ -39,7 +39,7 @@
     }
     .btn-nav {
       display: none;
-      @include respond-to("md") {
+      @include respond-to("lg") {
         display: unset;
         width: 50px;
         height: 270px;
@@ -58,7 +58,7 @@
 
     #moveLeft {
       display: none;
-      @include respond-to("md") {
+      @include respond-to("lg") {
         display: unset;
         left: 0;
       }
@@ -66,14 +66,14 @@
 
     #moveRight {
       display: none;
-      @include respond-to("md") {
+      @include respond-to("lg") {
         display: unset;
         right: 0;
       }
     }
 
     &:hover {
-      @include respond-to("md") {
+      @include respond-to("lg") {
         .btn-nav {
           visibility: visible;
         }
