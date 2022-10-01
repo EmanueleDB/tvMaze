@@ -88,9 +88,11 @@ export default Vue.extend({
     },
     scrollTvShows(direction: string) {
       const slider = document.querySelector("." + this.id) as Element
-      direction === "moveRight"
-        ? (this.distanceToScroll = this.distanceToScroll + 700)
-        : (this.distanceToScroll = this.distanceToScroll - 700)
+      if (direction === "moveRight") {
+        this.distanceToScroll = this.distanceToScroll + 700
+      } else if (this.distanceToScroll === 0) return
+      else this.distanceToScroll = this.distanceToScroll - 700
+
       slider?.scrollTo({
         top: 0,
         left: this.distanceToScroll,
