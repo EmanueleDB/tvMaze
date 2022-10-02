@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 const state: State = {
   tvShowsCollection: [],
+  hasRendered: false,
 }
 
 export default new Vuex.Store({
@@ -14,6 +15,9 @@ export default new Vuex.Store({
   mutations: {
     setTvShows(state: State, payload: Array<TvShow>) {
       state.tvShowsCollection = payload
+    },
+    isRendering(state: State, payload: boolean) {
+      state.hasRendered = payload
     },
   },
 })

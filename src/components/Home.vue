@@ -31,7 +31,7 @@ export default Vue.extend({
   },
   computed: {
     collections() {
-      return this.$store.state.tvShowsCollection
+      return this.$store.state.hasRendered
     },
   },
   methods: {

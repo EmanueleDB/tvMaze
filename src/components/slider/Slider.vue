@@ -85,6 +85,7 @@ export default Vue.extend({
       this.sortedGroup = this.sortedGroup.sort(
         (a, b) => b.rating.average - a.rating.average
       )
+      this.$store.commit("isRendering", true)
     },
     scrollTvShows(direction: string) {
       const slider = document.querySelector("." + this.id) as Element
