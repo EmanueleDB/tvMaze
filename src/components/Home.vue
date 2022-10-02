@@ -1,15 +1,13 @@
 <template>
   <div :class="!collections ? 'text-center' : ''">
     <b-spinner
-      v-if="!collections"
+      v-show="!collections"
       type="grow"
       label="Spinning"
       variant="secondary"
     ></b-spinner>
-    <template>
-      <Search @isSearching="isTyping" />
-      <Collections v-if="!isSearching.length"
-    /></template>
+    <Search v-show="collections" @isSearching="isTyping" />
+    <Collections v-show="collections && !isSearching.length" />
   </div>
 </template>
 

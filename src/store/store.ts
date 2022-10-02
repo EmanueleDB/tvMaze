@@ -17,6 +17,7 @@ export default new Vuex.Store({
       state.tvShowsCollection = payload
     },
     isRendering(state: State, payload: boolean) {
+      console.log(payload)
       state.hasRendered = payload
     },
   },
