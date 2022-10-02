@@ -14,7 +14,11 @@
       class="container__slider__movie"
       @click="openModal(tvShow)"
     >
-      <img :src="tvShow.image.original" alt="image-show" />
+      <img
+        :src="tvShow.image.original"
+        alt="image-show"
+        @load.prevent="loaded()"
+      />
     </div>
     <DetailsModal
       :show-modal="showModal"
@@ -60,6 +64,7 @@ export default Vue.extend({
       tvShow: {} as TvShow,
       sortedGroup: [] as Array<TvShow>,
       distanceToScroll: 0,
+      loadedImages: 0 as number,
     }
   },
   watch: {
@@ -85,7 +90,6 @@ export default Vue.extend({
       this.sortedGroup = this.sortedGroup.sort(
         (a, b) => b.rating.average - a.rating.average
       )
-      this.$store.commit("isRendering", true)
     },
     scrollTvShows(direction: string) {
       const slider = document.querySelector("." + this.id) as Element
@@ -99,6 +103,11 @@ export default Vue.extend({
         left: this.distanceToScroll,
         behavior: "smooth",
       })
+    },
+    loaded() {
+      this.loadedImages++
+      if (this.loadedImages === this.sortedGroup.length)
+        this.$store.commit("imageCounter", this.loadedImages)
     },
   },
 })
