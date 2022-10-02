@@ -1,7 +1,15 @@
 <template>
-  <div>
-    <Search @isSearching="isTyping" />
-    <Collections v-if="!isSearching.length" />
+  <div :class="!collections ? 'text-center' : ''">
+    <b-spinner
+      v-if="!collections"
+      type="grow"
+      label="Spinning"
+      variant="secondary"
+    ></b-spinner>
+    <template>
+      <Search @isSearching="isTyping" />
+      <Collections v-if="!isSearching.length"
+    /></template>
   </div>
 </template>
 
@@ -20,6 +28,11 @@ export default Vue.extend({
     return {
       isSearching: "",
     }
+  },
+  computed: {
+    collections() {
+      return this.$store.state.tvShowsCollection
+    },
   },
   methods: {
     isTyping(value: string) {
