@@ -17,7 +17,7 @@
       <img
         :src="tvShow.image.original"
         alt="image-show"
-        @load.prevent="loaded()"
+        @load.prevent="countLoadedImages()"
       />
     </div>
     <DetailsModal
@@ -104,7 +104,7 @@ export default Vue.extend({
         behavior: "smooth",
       })
     },
-    loaded() {
+    countLoadedImages() {
       this.loadedImages++
       if (this.loadedImages === this.sortedGroup.length)
         this.$store.commit("imageCounter", this.loadedImages)

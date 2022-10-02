@@ -1,11 +1,12 @@
 <template>
-  <div :class="!collections ? 'text-center' : ''">
-    <b-spinner
-      v-show="!collections"
-      type="grow"
-      label="Spinning"
-      variant="secondary"
-    ></b-spinner>
+  <div>
+    <div
+      v-if="!collections"
+      class="d-flex justify-content-center align-items-center mb-3"
+    >
+      <strong>Loading the TV Shows... </strong>
+      <b-spinner type="grow" label="Spinning" variant="secondary"></b-spinner>
+    </div>
     <Search v-show="collections" @isSearching="isTyping" />
     <Collections v-show="collections && !isSearching.length" />
   </div>
