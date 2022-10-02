@@ -22,6 +22,14 @@
       font-size: 0.8rem;
       transition: all 0.8s ease-in-out;
 
+      &:first-of-type {
+        padding: 0 10px 0 0;
+        width: 120px;
+        @include respond-to("md") {
+          width: 190px;
+        }
+      }
+
       @include respond-to("md") {
         width: 200px;
         height: 270px;
@@ -45,6 +53,7 @@
         height: 270px;
         position: sticky;
         bottom: 0;
+        border-radius: 5px;
         background-color: $modal-background;
         opacity: 0.6;
         outline: none;
@@ -61,6 +70,7 @@
       @include respond-to("lg") {
         display: unset;
         left: 0;
+        margin-right: 10px;
       }
     }
 
