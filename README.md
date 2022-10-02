@@ -14,8 +14,8 @@
 
 For what was requested for the assignment I didn't need a navigation, there is only one route which is Home (/)
 and I decided that the detail page when I click a tv show would be in a modal and not in a route.
-Vuex has been used just for a couple of mutations because the requested app is pretty static: I fetched the tv shows in Home and I commit them to the store because also the component Search will need to use them.
-The second mutation is for the spinner before the images are not fully loaded and rendered.
+Vuex has been used just for few mutations: I fetched the tv shows in Home and I commit them to the store because also the component Search will need to use them.
+The others mutations are for the spinner before the images are not fully loaded and rendered.
 
 Due to the fact that I'm not able to PATCH, DELETE or ADD more tv shows I just used the main endpoint from the provided API to get all the tv shows.
 The list of the tv shows won't change so I don't need to make more calls to get the details of a specific tv show (url/shows:id), I preferred selected the clicked one from the list to be displayed in the modal.
