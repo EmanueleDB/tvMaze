@@ -1,7 +1,7 @@
 <template>
   <div :class="['container__slider', id]">
     <button
-      v-if="group.length > 6 || sortedGroup.length > 6"
+      v-if="group.length > 4 || sortedGroup.length > 4"
       type="button"
       id="moveLeft"
       class="btn-nav"
@@ -18,7 +18,7 @@
       <img
         :src="tvShow.image.original"
         :style="[
-          group.length < 6 || sortedGroup.length < 6
+          group.length <= 4 || sortedGroup.length <= 4
             ? { marginLeft: '60px' }
             : '',
         ]"
@@ -32,7 +32,7 @@
       :tv-show="tvShow"
     />
     <button
-      v-if="group.length > 6 || sortedGroup.length > 6"
+      v-if="group.length > 4 || sortedGroup.length > 4"
       type="button"
       id="moveRight"
       class="btn-nav"
