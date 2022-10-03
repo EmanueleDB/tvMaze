@@ -26,6 +26,7 @@ export default Vue.extend({
     return {
       TvShows: [] as Array<TvShow>,
       tvShowsByGenres: [] as Grouped[],
+      count: 0,
     }
   },
   mounted() {
@@ -58,15 +59,18 @@ export default Vue.extend({
               genre: TvShows[i].genres[j],
               TvShows: [TvShows[i]],
             }
+            this.count++
             this.tvShowsByGenres.push(newFinal)
           } else {
             this.tvShowsByGenres[index].TvShows = [
               ...this.tvShowsByGenres[index].TvShows,
               TvShows[i],
             ]
+            this.count++
           }
         }
       }
+      this.$store.commit("setTotalImages", this.count)
     },
   },
 })

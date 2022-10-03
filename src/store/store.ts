@@ -9,6 +9,7 @@ const state: State = {
   tvShowsCollection: [],
   hasRendered: false,
   imageCount: 0,
+  totalImages: 0,
 }
 
 export default new Vuex.Store({
@@ -17,9 +18,12 @@ export default new Vuex.Store({
     setTvShows(state: State, payload: Array<TvShow>) {
       state.tvShowsCollection = payload
     },
+    setTotalImages(state: State, payload: number) {
+      state.totalImages = payload
+    },
     imageCounter(state: State, payload: number) {
       state.imageCount = state.imageCount + payload
-      if (state.imageCount === 587) {
+      if (state.imageCount === state.totalImages) {
         state.hasRendered = true
       }
     },
